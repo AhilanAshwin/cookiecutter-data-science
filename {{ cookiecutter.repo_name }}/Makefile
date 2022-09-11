@@ -9,6 +9,7 @@ BUCKET = {{ cookiecutter.s3_bucket }}
 PROFILE = {{ cookiecutter.aws_profile }}
 PROJECT_NAME = {{ cookiecutter.repo_name }}
 PYTHON_INTERPRETER = {{ cookiecutter.python_interpreter }}
+PYTHON_VERSION = {{ cookiecutter.python_version }}
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False
@@ -65,11 +66,11 @@ else
 endif
 		@echo ">>> New conda env created. Activate with:\nsource activate $(PROJECT_NAME)"
 else
-	$(PYTHON_INTERPRETER) -m pip install -q virtualenv virtualenvwrapper
-	@echo ">>> Installing virtualenvwrapper if not already installed.\nMake sure the following lines are in shell startup file\n\
-	export WORKON_HOME=$$HOME/.virtualenvs\nexport PROJECT_HOME=$$HOME/Devel\nsource /usr/local/bin/virtualenvwrapper.sh\n"
-	@bash -c "source `which virtualenvwrapper.sh`;mkvirtualenv $(PROJECT_NAME) --python=$(PYTHON_INTERPRETER)"
-	@echo ">>> New virtualenv created. Activate with:\nworkon $(PROJECT_NAME)"
+	@echo ">>> Creating a virtualenv with pyenv virtualenv."
+	@echo ">>> Make sure to consult the documenation for installation instructions at https://github.com/pyenv/pyenv"
+	pyenv virtualenv $(PYTHON_VERSION) $(PROJECT_NAME)
+	@echo ">>> Setting a local virtualenv for the directory."
+	pyenv local $(PROJECT_NAME)
 endif
 
 ## Test python environment is setup correctly
