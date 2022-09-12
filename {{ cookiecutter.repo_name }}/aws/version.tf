@@ -17,9 +17,9 @@ provider "aws" {
 locals {
   prefix = var.repo_name
   common_tags = {
-    creator         = var.creator
+    creator         = var.app_creator
     app_name        = var.app_name
-    repo_name       = var.app_prefix
+    repo_name       = var.repo_name
     app_description = "{{ cookiecutter.description }}"
   }
 }
