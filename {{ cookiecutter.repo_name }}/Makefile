@@ -54,6 +54,15 @@ else
 	aws s3 sync s3://$(BUCKET)/data/ data/ --profile $(PROFILE)
 endif
 
+## Init the directory containing the terraform configuration
+aws_init:
+	cd /aws && terraform init
+
+## Create an S3 Storage bucket with terraform
+create_s3_storage: aws_init
+	cd /aws && terraform validate && \
+	terraform apply -target=module.s3-bucket -var-file="env/{{ cookiecutter.repo_name }}.tfvars" -auto-approve
+
 ## Set up python interpreter environment
 create_environment:
 ifeq (True,$(HAS_CONDA))
