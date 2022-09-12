@@ -63,6 +63,9 @@ create_s3_storage: aws_init
 	cd /aws && terraform validate && \
 	terraform apply -target=module.s3-bucket -var-file="env/{{ cookiecutter.repo_name }}.tfvars" -auto-approve
 
+destroy_s3_storage: 
+	cd /aws && terraform destroy -target=module.s3-bucket
+
 ## Set up python interpreter environment
 create_environment:
 ifeq (True,$(HAS_CONDA))
