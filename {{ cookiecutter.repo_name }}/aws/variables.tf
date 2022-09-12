@@ -1,6 +1,8 @@
-# This file is to set generic variables for the resources
-# It includes the default value and type. It can be overridden 
-# by a tf.vars file
+#   ----------------------------------------------------------------
+#   This file is to set generic variables for the resources
+#   It includes the default value and type. It can be overridden 
+#   by a tf.vars file
+#   ----------------------------------------------------------------
 
 # Set the name of the project
 variable "app_name" {

@@ -9,3 +9,4 @@ module "s3-bucket" {
   bucket  = var.repo_name
   tags    = local.common_tags
 }
+
