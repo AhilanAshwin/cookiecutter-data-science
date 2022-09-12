@@ -61,12 +61,13 @@ aws_init:
 ## Create S3 Bucket 
 create_s3_storage: aws_init
 	cd aws && terraform validate && \
-	terraform apply -target=module.s3-bucket -var-file="env/{{ cookiecutter.repo_name }}.tfvars" -auto-approve
-	awk 'NR==8 {$0="BUCKET = $(terraform output -raw s3_bucket_bucket_domain_name)"} 1' ../Makefile
+	terraform apply -target=module.s3-bucket -var-file="env/{{ cookiecutter.repo_name }}.tfvars" -auto-approve && \
+	sed -i "8s/BUCKET = .*/BUCKET = $(terraform output -raw s3_bucket_name)/" ../Makefile;
 
 ## Destroy S3 Bucket and all items in bucket
 destroy_s3_storage: 
-	cd aws && terraform destroy -target=module.s3-bucket
+	cd aws && \
+	terraform destroy -target=module.s3-bucket -var-file="env/{{ cookiecutter.repo_name }}.tfvars" -auto-approve
 
 ## Set up python interpreter environment
 create_environment:
