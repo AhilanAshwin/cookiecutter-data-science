@@ -15,8 +15,7 @@ provider "aws" {
 
 # These are a set of local values that can be declared together
 locals {
-  prefix       = var.repo_name
-  environments = ["dev", "stage", "prod"]
+  prefix = var.repo_name
   common_tags = {
     creator         = var.creator
     app_name        = var.app_name
