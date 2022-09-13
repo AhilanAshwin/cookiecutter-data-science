@@ -34,3 +34,9 @@ variable "aws_profile" {
   description = "The aws account profile to deploy resources"
   type        = string
 }
+
+# The name of the s3 bucket
+variable "s3_bucket_prefix" {
+  description = "The aws account profile to deploy resources"
+  type        = string
+}

@@ -1,7 +1,8 @@
 # DO NOT ADD THIS FOLDER TO VERSION CONTROL!
 # AWS INFRASTRUCTURE AND PROJECT CONFIGURATION
-app_name    = "{{ cookiecutter.project_name }}"
-repo_name   = "{{ cookiecutter.repo_name }}"
-app_creator = "{{ cookiecutter.author_name }}"
-aws_region  = "{{ cookiecutter.aws_region }}"
-aws_profile = "{{ cookiecutter.aws_profile }}"
+app_name         = "{{ cookiecutter.project_name }}"
+repo_name        = "{{ cookiecutter.repo_name }}"
+app_creator      = "{{ cookiecutter.author_name }}"
+aws_region       = "{{ cookiecutter.aws_region }}"
+aws_profile      = "{{ cookiecutter.aws_profile }}"
+s3_bucket_prefix = "{{ cookiecutter.s3_bucket if '[OPTIONAL]' not in cookiecutter.s3_bucket else cookiecutter.repo_name }}"
