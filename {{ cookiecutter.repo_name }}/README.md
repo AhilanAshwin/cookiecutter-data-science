@@ -54,4 +54,9 @@ Project Organization
 
 --------
 
+## Enable GitHub Pages for Sphinx Docs
+- Go to `https://github.com/<yourname/organizationname>/{{cookiecutter.repo_name}}/settings/pages`
+- In the “Source” section, choose “gh-pages” in the dropdown menu and click save.
+- Your documentation will appear at `https://github.com/<yourname/organizationname>/{{cookiecutter.repo_name}}/settings/pages`
+
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
