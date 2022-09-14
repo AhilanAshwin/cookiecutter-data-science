@@ -62,7 +62,8 @@ aws_init:
 create_s3_storage: aws_init
 	cd aws && terraform validate && \
 	terraform apply -target=module.s3-bucket -var-file="env/{{ cookiecutter.repo_name }}.tfvars" -auto-approve && \
-	sed -i "8s/BUCKET = .*/BUCKET = $(terraform output -raw s3_bucket_name)/" ../Makefile;
+	sed -i "8s/BUCKET = .*/BUCKET = $(terraform output -raw s3_bucket_name)/" ../Makefile && \
+	sed -i "s+s3://.*/data/+s3://$(terraform output -raw s3_bucket_name)/data/+g" ..docs/commands.rst;
 
 ## Destroy S3 Bucket and all items in bucket
 destroy_s3_storage: 
