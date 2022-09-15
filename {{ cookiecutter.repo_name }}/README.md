@@ -54,9 +54,14 @@ Project Organization
 
 --------
 
+## How to write your docs
+- The docs can be written in a MyST a different flavour of markdown. 
+- For more information checkout `https://myst-parser.readthedocs.io/en/latest/index.html`
+
 ## Enable GitHub Pages for Sphinx Docs
 - Go to `https://github.com/<yourname/organizationname>/{{cookiecutter.repo_name}}/settings/pages`
 - In the “Source” section, choose “gh-pages” in the dropdown menu and click save.
 - Your documentation will appear at `https://github.com/<yourname/organizationname>/{{cookiecutter.repo_name}}/settings/pages`
+
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>

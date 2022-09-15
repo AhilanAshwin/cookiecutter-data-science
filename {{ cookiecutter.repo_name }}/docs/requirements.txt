@@ -1,3 +1,8 @@
 #   ----------------------------------------------------------------
-#   Add sphinx theme here for github actions 
+#   Add sphinx themes and other requirements here for building docs
+#   with github actions 
 #   ----------------------------------------------------------------
+sphinx-press-theme
+sphinx-click
+myst_parser
+sphinx-autodoc-napoleon-typehints
