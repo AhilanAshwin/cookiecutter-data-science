@@ -54,6 +54,20 @@ else
 	aws s3 sync s3://$(BUCKET)/data/ data/ --profile $(PROFILE)
 endif
 
+## Init Terraform config for AWS
+aws_init:
+	cd aws && terraform init
+
+## Create S3 Bucket 
+create_s3_storage: aws_init
+	cd aws && terraform validate && \
+	terraform apply -target=module.s3-bucket -var-file="env/{{ cookiecutter.repo_name }}.tfvars" -auto-approve && \
+	
+## Destroy S3 Bucket and all items in bucket
+destroy_s3_storage: 
+	cd aws && \
+	terraform destroy -target=module.s3-bucket -var-file="env/{{ cookiecutter.repo_name }}.tfvars" -auto-approve
+
 ## Set up python interpreter environment
 create_environment:
 ifeq (True,$(HAS_CONDA))

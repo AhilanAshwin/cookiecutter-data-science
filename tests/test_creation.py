@@ -82,6 +82,11 @@ class TestCookieSetup(object):
         makefile_path = self.path / 'Makefile'
         assert makefile_path.exists()
         assert no_curlies(makefile_path)
+    
+    def test_aws_terraform(self):
+        aws_config_dir = self.path / "aws"
+        for tf_config in aws_config_dir.glob("**/*.tf*"):
+            assert no_curlies(tf_config)
 
     def test_folders(self):
         expected_dirs = [
@@ -101,6 +106,8 @@ class TestCookieSetup(object):
             'src/features',
             'src/models',
             'src/visualization',
+            'aws',
+            'aws/env'
         ]
 
         ignored_dirs = [
