@@ -1,0 +1,23 @@
+# External requirements for package development
+# AWS
+awscli
+
+# Linting and formating
+black
+flake8
+isort
+
+# Testing
+pytest
+coverage
+
+# Documentation
+Sphinx
+sphinx-press-theme
+sphinx-click
+sphinx-autodoc-typehints
+sphinx-autobuild
+myst_parser
+
+# Notebooks
+jupyter

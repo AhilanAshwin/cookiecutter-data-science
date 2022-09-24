@@ -24,6 +24,7 @@ endif
 ## Install Python Dependencies
 requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
+	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
 ## Make Dataset
@@ -34,10 +35,13 @@ data: requirements
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
+	find . -type d -name "src.egg-info" -delete
 
 ## Lint using flake8
 lint:
 	flake8 src
+	black src
+	isort src
 
 ## Upload Data to S3
 sync_data_to_s3:
@@ -62,12 +66,12 @@ aws_init:
 ## Create S3 Bucket 
 create_s3_storage: aws_init
 	cd aws && terraform validate && \
-	terraform apply -target=module.s3-bucket -var-file="env/{{ cookiecutter.repo_name }}.tfvars" -auto-approve && \
+	terraform apply -target=module.s3-bucket -var-file="env/my_arbitrage_project.tfvars" -auto-approve && \
 	
 ## Destroy S3 Bucket and all items in bucket
 destroy_s3_storage: 
 	cd aws && \
-	terraform destroy -target=module.s3-bucket -var-file="env/{{ cookiecutter.repo_name }}.tfvars" -auto-approve
+	terraform destroy -target=module.s3-bucket -var-file="env/my_arbitrage_project.tfvars" -auto-approve
 
 ## Set up python interpreter environment
 create_environment:
@@ -90,6 +94,10 @@ endif
 ## Test python environment is setup correctly
 test_environment:
 	$(PYTHON_INTERPRETER) test_environment.py
+
+## Create and serve docs locally
+docs_serve:
+	sphinx-autobuild docs docs/_build/html
 
 #################################################################################
 # PROJECT RULES                                                                 #

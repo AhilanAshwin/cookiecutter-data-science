@@ -5,4 +5,4 @@
 sphinx-press-theme
 sphinx-click
 myst_parser
-sphinx-autodoc-napoleon-typehints
+sphinx-autodoc-typehints
