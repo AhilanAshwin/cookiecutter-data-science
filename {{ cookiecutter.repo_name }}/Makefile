@@ -31,11 +31,17 @@ requirements: test_environment
 data: requirements
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
 
+## Initialize git
+git:
+	git init
+	git add . 
+	git commit -m "Init project repo"
+	git branch -m main
+
 ## Delete all compiled Python files
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
-	find . -type d -name "src.egg-info" -delete
 
 ## Lint using flake8
 lint:
