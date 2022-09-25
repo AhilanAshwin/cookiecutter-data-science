@@ -42,6 +42,8 @@ git:
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
+	rm -rf `find . -type d -name .ipynb_checkpoints`
+	rm -rf `find . -type d -name $(PROJECT_NAME).egg-info`
 
 ## Lint using flake8
 lint:
